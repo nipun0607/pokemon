@@ -4,11 +4,7 @@ let pokemon_container=document.querySelector(".pokemon_container")
 let select=document.querySelector(".type-filter");
 let filter=document.querySelector("#filter");
 let input1=document.querySelector("#pokemon-search-input");
-let color={
-  grass:"green",
-  fire:"orange",
-  water:"blue",
-}
+let colorarr=["green","blue","orange"];
 async function fetch_Data(){
     for (let i=1;i<=150;i++){
         let Api=`https://pokeapi.co/api/v2/pokemon/${i}`
@@ -32,9 +28,11 @@ function new_data(pokemon,i){
 
 
     let typesof=pokemon.types[0].type.name;
+
     // console.log(typesof);
 
     // console.log(pokemon);
+
     let abl=""
     pokemon.abilities.forEach(e=>{
         abl=abl+" "+e.ability.name
@@ -46,10 +44,12 @@ function new_data(pokemon,i){
     //
     
     container.classList.add("outer_card_container");
+    
     container.innerHTML=
+
     `
 
-    <div class="card_conatiner">
+    <div class="card_conatiner" id=${typesof}>
       <div class="front_card">
         <p class="number">${i}</p>
         <img
@@ -70,6 +70,7 @@ function new_data(pokemon,i){
     pokemon_container.appendChild(container);
 
     allcards.push(container);
+
 
 }
     let arrOftype=[];
